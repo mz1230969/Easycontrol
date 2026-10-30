@@ -1,4 +1,3 @@
-cat << 'EOF' > .github/workflows/main.yml
 name: Build APK
 
 on:
@@ -32,6 +31,3 @@ jobs:
         name: EasyControl-APKs
         path: |
           **/build/outputs/apk/**/*.apk
-EOF
-
-git add .github/workflows/main.yml && git commit -m "update workflow" && git push
