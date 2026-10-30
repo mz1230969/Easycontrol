@@ -1,3 +1,4 @@
+cat << 'EOF' > .github/workflows/main.yml
 name: Build APK
 
 on:
@@ -19,16 +20,18 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Build Debug APK
+    - name: Build All APKs
       run: |
         cd easycontrol
         chmod +x ./gradlew
         ./gradlew assembleDebug --continue || true
 
-    - name: Upload APK
+    - name: Upload APKs
       uses: actions/upload-artifact@v4
       with:
-        name: EasyControl-Debug
+        name: EasyControl-APKs
         path: |
-          **/build/outputs/apk/debug/*.apk
-          **/build/outputs/apk/release/*.apk
+          **/build/outputs/apk/**/*.apk
+EOF
+
+git add .github/workflows/main.yml && git commit -m "update workflow" && git push
