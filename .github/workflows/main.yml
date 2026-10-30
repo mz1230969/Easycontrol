@@ -19,13 +19,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
-
     - name: Build Debug APK
       run: |
         cd easycontrol
-        mkdir -p cloud
         chmod +x ./gradlew
         ./gradlew assembleDebug
 
