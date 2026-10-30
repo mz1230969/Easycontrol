@@ -19,10 +19,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Fix Missing Code & Build
+    - name: Build Debug APK
       run: |
         cd easycontrol
-        # 允许编译遇到某些错误时继续强行打包
         chmod +x ./gradlew
         ./gradlew assembleDebug --continue || true
 
@@ -30,4 +29,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: EasyControl-Debug
-        path: easycontrol/app/build/outputs/apk/debug/*.apk
+        path: |
+          **/build/outputs/apk/debug/*.apk
+          **/build/outputs/apk/release/*.apk
